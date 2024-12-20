@@ -53,10 +53,51 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
-header {
+.all-header-sommaire {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
+}
+.mode-edition {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+	background-color: black;
+    color: white;
+}
+.btn-add-picture {
+	font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
+}
+
+.gallery_modal {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 30px;
+	padding: 46px 105px;
+}
+.gallery_modal figure{
+	width: 100%;
+}
+.gallery_modal img{
+	width: 100%;
+	height: 100%;
+}
+.gallery_modal figcaption{
+	display: none;
+}
+.gallery_modal button {
+	position: relative;
+	left: -30%;
+	top: -81%;
 }
 section {
 	margin: 50px 0
@@ -98,6 +139,10 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+.header_sommaire {
+	text-decoration: none;
+	color: inherit;
+}
 #introduction {
 	display: flex;
 	align-items: center;
@@ -122,6 +167,10 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 #portfolio h2 {
+	display: flex;
+    padding-left: 55px;
+	align-items: baseline;
+    justify-content: center;
 	text-align: center;
 	margin-bottom: 1em;
 }
@@ -132,10 +181,38 @@ li:hover {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
+.gallery button {
+	display: none;
+}
+.btn-modal {
+	border: none;
+	background-color: none;
+	color: none;
+	
+}
 .gallery img {
 	width: 100%;
-
+}
+.filtres {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
+	gap: 10px;
+}
+.btn_class {
+	font-family: 'Syne';
+	font-size: 16px;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #1D6154;
+	background-color: white;
+	text-align: center;
+	border-radius: 60px ;
+	border: 2px solid #246453;
+}
+.btn_select {
+	color: white;
+	background-color: #1D6154;
 }
 #contact {
 	width: 50%;
@@ -179,6 +256,9 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+#contact a{
+	color: inherit;
+}
 
 footer nav ul {
 	display: flex;
@@ -186,3 +266,131 @@ footer nav ul {
 	margin: 2em
 }
 
+.data-open-modal {
+	display: flex;
+}
+
+.data-close-modal {
+	display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 17px;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+
+.h2Style i {
+	display: flex;
+	align-items: baseline;
+	color: black;
+    font-size: 13px;
+    padding-left: 30px;
+
+}
+
+.fa-pen-to-square p {
+	padding-left: 5px;
+	font-size: 10px;
+	font-family: 'Syne';
+}
+
+.galerie-photo h3{
+	font-size: 27px;
+
+}
+
+.ajout-photo h3 {
+	font-size: 27px;
+}
+
+.fa-trash-can {
+	position: relative;
+	left: 33px;
+	top: -150px;
+	color: white;
+	background-color: black;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.fa-image {
+	font-size: 76px;
+	color: #B9C5CC;
+	
+}
+
+.fa-arrow-left {
+	display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 17px;
+    padding-left: 15px;
+    padding-top: 10px;
+	color: #444444;
+}
+
+.ajout-photo { 
+	margin: 0px;
+}
+
+.ajout-photo form{ 
+	padding: 0px 105px;
+}
+
+.modal-catego {
+	height: 51px;
+    border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.formFile {
+	display: flex;
+    text-align: center;
+    height: 169px;
+    margin: 0px !important;
+    color: #E8F1F6;
+    background-color: #E8F1F6;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* .labelFile {
+	display: none;
+} */
+
+#inputFile {
+	width: 100%;
+	height: 169px!important;
+	text-align: center;
+}
+
+/* #inputFile[type=file]::file-selector-button{
+	display: none;
+} */
+
+#inputFile[type=file]{
+	box-shadow: none;
+}
+ 
+.addPhoto {
+	text-align: center;
+    color: #306685;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: #B9C5CC;
+    border-width: 0px;
+	padding: 5px 15px;
+	font-size: 14px;
+}
+
+.pPhoto {
+	color: #444444;
+
+}
+
+.formFile img {
+	width: 100px;
+	height: 100px;
+}

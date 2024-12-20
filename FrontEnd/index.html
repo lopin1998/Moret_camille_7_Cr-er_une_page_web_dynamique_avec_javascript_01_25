@@ -8,19 +8,26 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
 <header>
+	<p class="mode-edition"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p>
+<div class="all-header-sommaire">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<li ><a class="header_sommaire" href="./login.html">login</a></li>
+			<li class="LogOut" onclick="modifLogOut">log out</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
+</div>
 </header>
 <main>
 	<section id="introduction">
@@ -35,9 +42,46 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="h2Style">
+			<h2>Mes Projets<i class="fa-regular fa-pen-to-square data-open-modal"><p>Modifier</p></i></h2>
+		</div>
+		<dialog class="data-modal" id="contact">
+			<div class="galerie-photo">
+				<i class="fa-solid fa-xmark data-close-modal"></i>
+				<h3>Galerie photo</h3>
+				<div class="gallery_modal">
+
+				</div>
+				<button class="btn-add-picture">Ajouter une photo</button>
+			</div>
+			<div class="ajout-photo">
+				<div class="travelMenu">
+					<i class="fa-solid fa-arrow-left"></i>
+					<i class="fa-solid fa-xmark data-close-modal"></i>
+				</div>
+				<h3>Ajout photo</h3>
+				<form class="addForm">
+					<label for="inputFile" class="formFile">
+						<i class="fa-solid fa-image"></i>
+						<img id="preview" src="#" alt="votre image" class="labelFile"/>
+						<span class="addPhoto">+ Ajouter photo</span>
+						<p class="pPhoto">jpg. png: 4mo max</p>
+						<input type="file" accept="image/*" id="inputFile" autocomplete="la"/>
+					</label>
+					<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre" autocomplete="titre">
+					<label class="modal-label" for="modal-catego">Catégorie</label>
+					<select id="ui" class="modal-catego" name="modal-catego">
+
+					</select>
+					<input type="submit" value="Valider" id="formModalSubmit" >
+				</form>
+			</div>
+		</dialog>
+		
+		<div class="filtres"></div>
 		<div class="gallery">
-			<figure>
+			<!-- <figure>
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
 				<figcaption>Abajour Tahina</figcaption>
 			</figure>
@@ -80,7 +124,7 @@
 			<figure>
 				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
 				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
+			</figure> -->
 		</div>
 	</section>
 	<section id="contact">
@@ -105,5 +149,6 @@
 		</ul>
 	</nav>
 </footer>
+	<script src="script.js"></script>
 </body>
 </html>

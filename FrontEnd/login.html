@@ -12,24 +12,26 @@
 </head>
 <body>
     <header>
-        <a class="header_sommaire" href="./index.html"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
-        <nav>
-            <ul>
-                <li>projets</li>
-                <li>contact</li>
-                <li ><a class="header_sommaire" href="./login.html">login</a></li>
-                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-            </ul>
-        </nav>
+        <div class="all-header-sommaire">
+            <a class="header_sommaire" href="./index.html"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
+            <nav>
+                <ul>
+                    <li>projets</li>
+                    <li>contact</li>
+                    <li><a class="header_sommaire" href="./login.html">login</a></li>
+                    <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+                </ul>
+            </nav>
+    </div>
     </header>
     <main>
         <section id="contact">
             <h2>Log In</h2>
             <form id="login-form">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" autocomplete="email">
+                <input type="text" name="email" id="email" required autocomplete="email">
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" autocomplete="mdp">
+                <input type="password" name="password" id="password" required autocomplete="mdp">
                 <input type="submit" value="Se connecter" id="login-from-submit">
             </form>
             <p><a href="#">Mot de passe oublier ?</a></p>

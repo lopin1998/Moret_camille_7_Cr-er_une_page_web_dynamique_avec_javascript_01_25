@@ -4,7 +4,7 @@ loginForm.addEventListener("submit", async (e) => {
     e.preventDefault()
     const email = loginForm.email.value
     const password = loginForm.password.value
-
+/* ajouter de verification pour email et pasword et ajouter une regex 101 pour email */
     try {
         let response = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
@@ -35,3 +35,7 @@ loginForm.addEventListener("submit", async (e) => {
 
 
 
+/* /
+^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$
+/
+gm */

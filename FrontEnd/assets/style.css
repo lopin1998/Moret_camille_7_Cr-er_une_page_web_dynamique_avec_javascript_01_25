@@ -85,6 +85,7 @@ body {
 	padding: 46px 105px;
 }
 .gallery_modal figure{
+	position: relative;
 	width: 100%;
 }
 .gallery_modal img{
@@ -266,6 +267,11 @@ footer nav ul {
 	margin: 2em
 }
 
+.data-modal {
+	border : none;
+	border-radius: 10px;
+}
+
 .data-open-modal {
 	display: flex;
 }
@@ -304,9 +310,8 @@ footer nav ul {
 }
 
 .fa-trash-can {
-	position: relative;
-	left: 33px;
-	top: -150px;
+	position: absolute;
+	right: 0px;
 	color: white;
 	background-color: black;
 	border-radius: 3px;
@@ -314,6 +319,8 @@ footer nav ul {
 }
 
 .fa-image {
+	position: relative;
+	top: 16px;
 	font-size: 76px;
 	color: #B9C5CC;
 	
@@ -356,9 +363,9 @@ footer nav ul {
     gap: 7px;
 }
 
-/* .labelFile {
-	display: none;
-} */
+.labelFile.src {
+	visibility: hidden;
+}
 
 #inputFile {
 	width: 100%;
@@ -366,9 +373,9 @@ footer nav ul {
 	text-align: center;
 }
 
-/* #inputFile[type=file]::file-selector-button{
+#inputFile[type=file]::file-selector-button{
 	display: none;
-} */
+}
 
 #inputFile[type=file]{
 	box-shadow: none;
@@ -391,6 +398,6 @@ footer nav ul {
 }
 
 .formFile img {
-	width: 100px;
-	height: 100px;
+	position: absolute;
+	height: 169px;
 }

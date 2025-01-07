@@ -86,19 +86,27 @@ let works = fetch("http://localhost:5678/api/works")
 let loginHeader = document.querySelector(".header_sommaire")
 let bandeauxEdition = document.querySelector(".mode-edition")
 let modalModifier = document.querySelector(".data-open-modal")
-let logoutHeader = document.querySelector(".LogOut") 
+let logoutHeader = document.querySelector(".LogOut")
+let BtnFiltre = document.querySelector(".filtres")
 console.log(key)
 if(key){
     loginHeader.style.display = "none"
     modalModifier.style.display = 'flex'
     bandeauxEdition.style.display = 'flex'
     logoutHeader.style.display = 'block'
+    BtnFiltre.style.display = 'none'
 }
 else {
     modalModifier.style.display = 'none'
     bandeauxEdition.style.display = 'none'
     logoutHeader.style.display = 'none'
+    BtnFiltre.style.display = 'flex'
 }
+/* lougout on remove la key pour passer de admin a utilisateur */
+logoutHeader.addEventListener("click", () => {
+    localStorage.removeItem("keyT");
+    location.reload();
+})
 
 
 
@@ -141,9 +149,15 @@ btnSupr.forEach(button =>
         console.log(url)
     })
 )
-
+document.querySelectorAll(".data-return").forEach(button =>
+    button.addEventListener("click", (e) => {
+        modal.querySelector(".ajout-photo").style.display = 'none'
+        modal.querySelector(".galerie-photo").style.display = 'block'
+    })
+)
 document.querySelectorAll(".data-close-modal").forEach(button =>
     button.addEventListener("click", (e) => {
+        modal.querySelector(".galerie-photo").style.display = 'block'
         modal.close()
     })
 )
@@ -212,6 +226,13 @@ addModal.addEventListener("submit", async (e) => {
     } catch (error) {
         console.log(error)
     }
+    try{
+        addModal.reset();
+        document.querySelector(".labelFile").style.display = "none"
+        return false;
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 /* document.addEventListener('DOMContentLoaded', function(){
@@ -233,6 +254,9 @@ inputFile.onchange = e => {
     const [file] = inputFile.files
     if(file) {
         preview.src = URL.createObjectURL(file)
+        document.querySelector(".fa-image").style.display = "none"
+        document.querySelector(".addPhoto").style.display = "none"
+        document.querySelector(".pPhoto").style.display = "none"
     }
 }
 

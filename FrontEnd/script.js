@@ -1,59 +1,61 @@
 let key = localStorage.getItem("keyT")
 console.log(key)
-    
-
-
-//insertAdjacentHTML
-
-
 
 let btn = document.querySelector(".btn_class")
-
-
 
 /* Les bouttons de filtres */
 let catego = fetch("http://localhost:5678/api/categories")
     .then(res => res.json())
     .then(data_catego => {
-        let display = '<button class="btn_class" data-id="0">Tout</button>'
+        let display = '<button class="btn_class 0" data-id="0">Tout</button>'
         for (const figure of data_catego) {
 
-            display += `<button class="btn_class" data-id="${figure.id}">${figure.name}</button>`
+            display += `<button class="btn_class ${figure.id}" data-id="${figure.id}">${figure.name}</button>`
    
         }
         document.querySelector(".filtres").insertAdjacentHTML('afterbegin', display)
         //let dataList = button
-        document.querySelectorAll('.btn_class').forEach(button =>
+        let activeId = null
+        document.querySelectorAll('.btn_class').forEach(button => {           
             button.addEventListener('click', (e) => {
                 let a = document.querySelectorAll(`[data-catego="${e.target.dataset.id}"]`)
                 let b = document.querySelectorAll("[data-catego]")
                 for(elem of b){
                     //Suprime tout //
                     elem.style.display = 'none'
-                    if(e.target.dataset.id == 0)
+                    activeId = e.target.dataset.id
+                    e.target.classList.add("btn_select")
+                    if(e.target.dataset.id == 0){ 
                         // si id est strictement egal a zero allort on affiche tout//
-                        elem.style.display = 'grid'
-                        button.classList.add("btn_select")   
+                        elem.style.display = 'grid'  
+                    }
                 }
                 for(elem of a){
                     //sa affiche uniquement les ellements sellectionner par "a"//
                     elem.style.display = 'grid'
-                    button.classList.add("btn_select")
                 }
                 console.log(button)
                 console.log(a)
-                console.log(e.target.dataset.id)                
-            }
-            ))
+                console.log(e.target.dataset.id)
+                console.log(activeId ,button.classList[1])
+                document.querySelectorAll('.btn_class').forEach(btn => {
+                    if(btn.classList[1] != activeId){
+                        btn.classList.remove("btn_select")
+                        console.log("coucou")
+                    }
+                })
+                
+            })
+            
+        }
+        
+    )
 
     })
     .catch(err => {
         console.log('marche pas')
         console.log(err)
     })
-
-
-
 
 /* Toute les images afficher */
 let works = fetch("http://localhost:5678/api/works")
@@ -95,6 +97,7 @@ if(key){
     bandeauxEdition.style.display = 'flex'
     logoutHeader.style.display = 'block'
     BtnFiltre.style.display = 'none'
+    document.querySelector(".all-header-sommaire").style.margin = '110px 0'
 }
 else {
     modalModifier.style.display = 'none'
@@ -119,6 +122,7 @@ const btnSupr = document.querySelectorAll(".gallery_modal")
 /* Les event listener pour ouvrir et fermer la modal et changer de fenètres */
 openButton.addEventListener("click", () => {
     modal.querySelector(".ajout-photo").style.display = 'none'
+    document.querySelector("body").style.overflow = 'hidden'
     modal.showModal()
 })
 
@@ -158,6 +162,7 @@ document.querySelectorAll(".data-return").forEach(button =>
 document.querySelectorAll(".data-close-modal").forEach(button =>
     button.addEventListener("click", (e) => {
         modal.querySelector(".galerie-photo").style.display = 'block'
+        document.querySelector("body").style.overflow = 'auto'
         modal.close()
     })
 )
@@ -211,43 +216,41 @@ addModal.addEventListener("submit", async (e) => {
         postFigure = fetch("http://localhost:5678/api/works")
             .then(res => res.json())
             .then(data_Form => {
-                let display = ''
+                let display3 = ''
+                let display4 = ''
                 console.log(data_Form)
                 for (let figure_works of data_Form) {
                     
-                    display = `<figure id="work-${figure_works.id}" data-catego="${category}">
+                    display3 = `<figure id="work-${figure_works.id}" data-catego="${category}">
                         <img src="${figure_works.imageUrl}" alt="${titleFigure}">
                         <figcaption>${titleFigure}</figcaption>
                     </figure>`
+                    display4 = `<figure id="work-${figure_works.id}" data-catego="${category}">
+                        <img src="${figure_works.imageUrl}" alt="${titleFigure}">
+                        <figcaption>${titleFigure}</figcaption>
+                        <i class="fa-regular fa-trash-can supr-btn" id="${figure_works.id}"></i>
+                    </figure>`
                 }
-                document.querySelector(".gallery").insertAdjacentHTML('beforeend', display)
+                document.querySelector(".gallery").insertAdjacentHTML('beforeend', display3)
+                document.querySelector(".gallery_modal").insertAdjacentHTML('beforeend', display4)
+
         })
 
     } catch (error) {
         console.log(error)
     }
     try{
+        document.querySelector(".labelFile").style.visibility = "hidden";
+        document.querySelector(".fa-image").style.display = "block"
+        document.querySelector(".addPhoto").style.display = "block"
+        document.querySelector(".pPhoto").style.display = "block"
+        document.querySelector(".btnForm").disabled = true
         addModal.reset();
-        document.querySelector(".labelFile").style.display = "none"
         return false;
     } catch (error) {
         console.log(error)
     }
 })
-
-/* document.addEventListener('DOMContentLoaded', function(){
-    var form = document.getElementsByClassName('addForm');
-    var submitButton = document.getElementById('formModalDubmit');
-
-    form.addEventListener('input', function(){
-        if (form.checkValidity()) {
-            submitButton.disabled = false;
-            submitButton.style.backgroundColor = "green";
-        }else {
-            submitButton.disabled = true
-        }
-    })
-}) */
 
 /* La on peut voir la precview */
 inputFile.onchange = e => {
@@ -257,10 +260,40 @@ inputFile.onchange = e => {
         document.querySelector(".fa-image").style.display = "none"
         document.querySelector(".addPhoto").style.display = "none"
         document.querySelector(".pPhoto").style.display = "none"
+        document.querySelector(".labelFile").style.visibility = "visible"
     }
+
 }
 
 /* Controle du form */
+document.addEventListener("DOMContentLoaded", () =>{
+    const contactForm = document.getElementById("contactForm")
+    const contactFormSubmit = document.getElementById("contactFormSubmit")
 
-checkForm =document.querySelector(".addForm")
-console.log(checkForm)
+    const pictureForm = document.getElementById("pictureForm")
+    const formModalSubmit = document.getElementById("formModalSubmit")
+    const checkFormValidity = () =>{
+        if(contactForm.checkValidity()){
+            contactFormSubmit.disabled = false
+            console.log("valide")
+        }
+        else{
+            contactFormSubmit.disabled = true
+            console.log("invalide")
+        }
+    }
+    const checkPictureFormValidity = () =>{
+        if(pictureForm.checkValidity()){
+            formModalSubmit.disabled = false
+            console.log("valide")
+        }
+        else{
+            formModalSubmit.disabled = true
+            console.log("invalide")
+        }
+    }
+    contactForm.addEventListener("input", checkFormValidity)
+    pictureForm.addEventListener("input", checkPictureFormValidity)
+    checkFormValidity()
+    checkPictureFormValidity()
+})

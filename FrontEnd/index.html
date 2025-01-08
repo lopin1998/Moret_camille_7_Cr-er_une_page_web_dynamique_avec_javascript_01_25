@@ -60,21 +60,21 @@
 					<i class="fa-solid fa-xmark data-close-modal"></i>
 				</div>
 				<h3>Ajout photo</h3>
-				<form class="addForm">
+				<form id="pictureForm" class="addForm">
 					<label for="inputFile" class="formFile">
 						<i class="fa-solid fa-image"></i>
 						<img id="preview" src=" "  alt="votre image" class="labelFile"/>
 						<span class="addPhoto">+ Ajouter photo</span>
 						<p class="pPhoto">jpg. png: 4mo max</p>
-						<input type="file" accept="image/*" id="inputFile" autocomplete="la"/>
+						<input type="file" accept="image/*" id="inputFile" autocomplete="la" required/>
 					</label>
 					<label for="titre">Titre</label>
-					<input type="text" name="titre" id="titre" autocomplete="titre">
+					<input type="text" name="titre" id="titre" autocomplete="titre" minLength="3" required>
 					<label class="modal-label" for="modal-catego">Catégorie</label>
-					<select id="ui" class="modal-catego" name="modal-catego">
+					<select id="ui" class="modal-catego" name="modal-catego" required>
 
 					</select>
-					<input type="submit" value="Valider" id="formModalSubmit" >
+					<input class="btnForm" type="submit" value="Valider" id="formModalSubmit" disabled>
 				</form>
 			</div>
 		</dialog>
@@ -130,14 +130,14 @@
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
+		<form id="contactForm" action="#" method="post">
 			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
+			<input type="text" name="name" id="name" required>
 			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
+			<input type="email" name="email" id="email" required>
 			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<textarea name="message" id="message" cols="30" rows="10" required></textarea>
+			<button class="btnForm" id="contactFormSubmit" type="submit" disabled>Envoyer</button>
 		</form>
 	</section>
 </main>

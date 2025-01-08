@@ -26,7 +26,7 @@ loginForm.addEventListener("submit", async (e) => {
         }
         let data = await response.json()
         localStorage.setItem("keyT", data.token)
-        window.location.href='/index.html'
+        window.location.href='index.html'
     } catch (error) {
         console.log(error)
     }

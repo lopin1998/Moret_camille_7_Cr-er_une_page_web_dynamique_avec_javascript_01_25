@@ -53,12 +53,21 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+body.modal-open {
+	overflow: hidden;
+}
+
 .all-header-sommaire {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0;
 }
 .mode-edition {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -68,6 +77,7 @@ body {
 }
 .btn-add-picture {
 	font-family: 'Syne';
+	font-size: 14px;
     font-weight: 700;
     color: white;
     background-color: #1D6154;
@@ -75,14 +85,16 @@ body {
     width: 180px;
     text-align: center;
     border-radius: 60px;
+	padding: 7px;
+
 }
 
 .gallery_modal {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-column-gap: 10px;
 	grid-row-gap: 30px;
-	padding: 46px 105px;
+	padding: 0px 50px;
 }
 .gallery_modal figure{
 	position: relative;
@@ -257,6 +269,33 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+
+.btnForm:valid {
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	padding: 7px;
+}
+
+.btnForm:disabled {
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 700;
+	color: white;
+	background-color: #A7A7A7;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	padding: 7px;
+}
+
 #contact a{
 	color: inherit;
 }
@@ -268,18 +307,23 @@ footer nav ul {
 }
 
 .data-modal {
+	width: 630px !important;
+	height: 688px;
 	border : none;
 	border-radius: 10px;
+	overflow: hidden;
 }
+
+.data-modal.modal
 
 .data-open-modal {
 	display: flex;
 }
 
 .data-close-modal {
-	display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+	position: absolute;
+	right: 10px;
+	top: 10px;
     font-size: 17px;
     padding-right: 15px;
     padding-top: 10px;
@@ -301,8 +345,13 @@ footer nav ul {
 }
 
 .galerie-photo h3{
+	padding: 60px 0px 46px;
 	font-size: 27px;
+}
 
+.ajout-photo h3 {
+	padding: 60px 0px 16px;
+	font-size: 27px;
 }
 
 .ajout-photo h3 {
@@ -311,7 +360,8 @@ footer nav ul {
 
 .fa-trash-can {
 	position: absolute;
-	right: 0px;
+	right: 6px;
+	top: 6px;
 	color: white;
 	background-color: black;
 	border-radius: 3px;
@@ -320,20 +370,19 @@ footer nav ul {
 
 .fa-image {
 	position: relative;
-	top: 16px;
+	top: 13px;
 	font-size: 76px;
 	color: #B9C5CC;
 	
 }
 
 .fa-arrow-left {
-	display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+	position: absolute;
+	left: 10px;
+	top: 10px;
     font-size: 17px;
     padding-left: 15px;
-    padding-top: 10px;
-	color: #444444;
+    padding-top: 10px;;
 }
 
 .ajout-photo { 
@@ -358,12 +407,11 @@ footer nav ul {
     color: #E8F1F6;
     background-color: #E8F1F6;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 7px;
+    gap: 20px;
 }
 
-.labelFile.src {
+.labelFile {
 	visibility: hidden;
 }
 
@@ -374,11 +422,13 @@ footer nav ul {
 }
 
 #inputFile[type=file]::file-selector-button{
-	display: none;
+	visibility: hidden;
+	
 }
 
 #inputFile[type=file]{
 	box-shadow: none;
+	visibility: hidden;
 }
  
 .addPhoto {

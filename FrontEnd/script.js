@@ -7,7 +7,7 @@ let btn = document.querySelector(".btn_class")
 let catego = fetch("http://localhost:5678/api/categories")
     .then(res => res.json())
     .then(data_catego => {
-        let display = '<button class="btn_class 0" data-id="0">Tout</button>'
+        let display = '<button class="btn_class 0" data-id="0">Tous</button>'
         for (const figure of data_catego) {
 
             display += `<button class="btn_class ${figure.id}" data-id="${figure.id}">${figure.name}</button>`

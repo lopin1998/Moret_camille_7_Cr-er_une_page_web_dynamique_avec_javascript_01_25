@@ -160,6 +160,14 @@ document.querySelectorAll(".data-close-modal").forEach(button =>
         modal.close()
     })
 )
+
+modal.addEventListener('click', (e) => {
+    if(e.target == modal) {
+        document.querySelector("body").style.overflow = 'auto'
+        modal.close()
+    }
+})
+
 /* Ceci est le selecteur de categorie dans la modal ou on ajoute des fiches. */
 let categoModal = fetch("http://localhost:5678/api/categories")
     .then(res => res.json())

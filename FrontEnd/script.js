@@ -1,5 +1,5 @@
 let key = localStorage.getItem("keyT")
-console.log(key)
+
 
 let btn = document.querySelector(".btn_class")
 
@@ -11,50 +11,45 @@ let catego = fetch("http://localhost:5678/api/categories")
         for (const figure of data_catego) {
 
             display += `<button class="btn_class ${figure.id}" data-id="${figure.id}">${figure.name}</button>`
-   
+
         }
         document.querySelector(".filtres").insertAdjacentHTML('afterbegin', display)
         //let dataList = button
         let activeId = null
-        document.querySelectorAll('.btn_class').forEach(button => {           
+        document.querySelectorAll('.btn_class').forEach(button => {
             button.addEventListener('click', (e) => {
                 let a = document.querySelectorAll(`[data-catego="${e.target.dataset.id}"]`)
                 let b = document.querySelectorAll("[data-catego]")
-                for(elem of b){
+                for (elem of b) {
                     //Suprime tout //
                     elem.style.display = 'none'
                     activeId = e.target.dataset.id
                     e.target.classList.add("btn_select")
-                    if(e.target.dataset.id == 0){ 
+                    if (e.target.dataset.id == 0) {
                         // si id est strictement egal a zero allort on affiche tout//
-                        elem.style.display = 'grid'  
+                        elem.style.display = 'grid'
                     }
                 }
-                for(elem of a){
+                for (elem of a) {
                     //sa affiche uniquement les ellements sellectionner par "a"//
                     elem.style.display = 'grid'
                 }
-                console.log(button)
-                console.log(a)
-                console.log(e.target.dataset.id)
-                console.log(activeId ,button.classList[1])
+
                 document.querySelectorAll('.btn_class').forEach(btn => {
-                    if(btn.classList[1] != activeId){
+                    if (btn.classList[1] != activeId) {
                         btn.classList.remove("btn_select")
-                        console.log("coucou")
                     }
                 })
-                
+
             })
-            
+
         }
-        
-    )
+
+        )
 
     })
     .catch(err => {
-        console.log('marche pas')
-        console.log(err)
+        
     })
 
 /* Toute les images afficher */
@@ -77,11 +72,10 @@ let works = fetch("http://localhost:5678/api/works")
         }
         document.querySelector(".gallery").insertAdjacentHTML('afterbegin', display1)
         document.querySelector(".gallery_modal").insertAdjacentHTML('afterbegin', display2)
-        
+
     })
     .catch(err => {
-        console.log('dans le catch')
-        console.log(err)
+        
     })
 
 /* key login */
@@ -90,8 +84,8 @@ let bandeauxEdition = document.querySelector(".mode-edition")
 let modalModifier = document.querySelector(".data-open-modal")
 let logoutHeader = document.querySelector(".LogOut")
 let BtnFiltre = document.querySelector(".filtres")
-console.log(key)
-if(key){
+
+if (key) {
     loginHeader.style.display = "none"
     modalModifier.style.display = 'flex'
     bandeauxEdition.style.display = 'flex'
@@ -133,24 +127,22 @@ addPicture.addEventListener("click", () => {
 /* La on suprime les fiche presente dynamiquement */
 btnSupr.forEach(button =>
     button.addEventListener("click", (e) => {
-        let url = ("http://localhost:5678/api/works/"+ e.target.id)
+        let url = ("http://localhost:5678/api/works/" + e.target.id)
         let option = {
             method: "DELETE",
-            headers: {Authorization: `Bearer ${key}`}
+            headers: { Authorization: `Bearer ${key}` }
         }
 
         fetch(url, option)
             .then(response => {
                 let test = document.querySelector(`#work-${e.target.id}`)
-                console.log(test)
                 test.remove()
                 e.target.parentNode.remove()
             })
             .catch(e => {
-                console.log(e)
-            })
                 
-        console.log(url)
+            })
+
     })
 )
 document.querySelectorAll(".data-return").forEach(button =>
@@ -174,21 +166,20 @@ let categoModal = fetch("http://localhost:5678/api/categories")
         for (const figure of data_catego) {
 
             display += `<option class="opti" id="ueue" value="${figure.id}">${figure.name}</option>`
-   
+
         }
         document.querySelector(".modal-catego").insertAdjacentHTML('afterbegin', display)
-        
-        
+
+
     })
     .catch(err => {
-        console.log('dans le catch')
-        console.log(err)
+        
     })
 
 const addModal = document.querySelector("form")
 const ue = document.querySelector(".modal-catego")
-document.getElementById("ui").addEventListener('change', function() {
-    console.log("j'ai cliqué sur ", this.value)
+document.getElementById("ui").addEventListener('change', function () {
+
 })
 
 
@@ -203,7 +194,6 @@ addModal.addEventListener("submit", async (e) => {
     formData.append("image", image)
     formData.append("title", titleFigure)
     formData.append("category", category)
-    console.log(addModal.inputFile)
     try {
         let postFigure = await fetch("http://localhost:5678/api/works", {
             method: "POST",
@@ -218,9 +208,8 @@ addModal.addEventListener("submit", async (e) => {
             .then(data_Form => {
                 let display3 = ''
                 let display4 = ''
-                console.log(data_Form)
                 for (let figure_works of data_Form) {
-                    
+
                     display3 = `<figure id="work-${figure_works.id}" data-catego="${category}">
                         <img src="${figure_works.imageUrl}" alt="${titleFigure}">
                         <figcaption>${titleFigure}</figcaption>
@@ -234,12 +223,12 @@ addModal.addEventListener("submit", async (e) => {
                 document.querySelector(".gallery").insertAdjacentHTML('beforeend', display3)
                 document.querySelector(".gallery_modal").insertAdjacentHTML('beforeend', display4)
 
-        })
+            })
 
     } catch (error) {
-        console.log(error)
+
     }
-    try{
+    try {
         document.querySelector(".labelFile").style.visibility = "hidden";
         document.querySelector(".fa-image").style.display = "block"
         document.querySelector(".addPhoto").style.display = "block"
@@ -248,14 +237,14 @@ addModal.addEventListener("submit", async (e) => {
         addModal.reset();
         return false;
     } catch (error) {
-        console.log(error)
+
     }
 })
 
 /* La on peut voir la precview */
 inputFile.onchange = e => {
     const [file] = inputFile.files
-    if(file) {
+    if (file) {
         preview.src = URL.createObjectURL(file)
         document.querySelector(".fa-image").style.display = "none"
         document.querySelector(".addPhoto").style.display = "none"
@@ -266,30 +255,26 @@ inputFile.onchange = e => {
 }
 
 /* Controle du form */
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", () => {
     const contactForm = document.getElementById("contactForm")
     const contactFormSubmit = document.getElementById("contactFormSubmit")
 
     const pictureForm = document.getElementById("pictureForm")
     const formModalSubmit = document.getElementById("formModalSubmit")
-    const checkFormValidity = () =>{
-        if(contactForm.checkValidity()){
+    const checkFormValidity = () => {
+        if (contactForm.checkValidity()) {
             contactFormSubmit.disabled = false
-            console.log("valide")
         }
-        else{
+        else {
             contactFormSubmit.disabled = true
-            console.log("invalide")
         }
     }
-    const checkPictureFormValidity = () =>{
-        if(pictureForm.checkValidity()){
+    const checkPictureFormValidity = () => {
+        if (pictureForm.checkValidity()) {
             formModalSubmit.disabled = false
-            console.log("valide")
         }
-        else{
+        else {
             formModalSubmit.disabled = true
-            console.log("invalide")
         }
     }
     contactForm.addEventListener("input", checkFormValidity)

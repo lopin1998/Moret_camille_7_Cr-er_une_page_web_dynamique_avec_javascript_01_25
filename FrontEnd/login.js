@@ -18,17 +18,15 @@ loginForm.addEventListener("submit", async (e) => {
 
             })
         })
-        console.log(response)
         if(response.status != 200){
             alert("mot de passe ou email incorect")
-            console.log("pas bon")
             throw new Error("coucou")
         }
         let data = await response.json()
         localStorage.setItem("keyT", data.token)
         window.location.href='index.html'
     } catch (error) {
-        console.log(error)
+        
     }
 
 })

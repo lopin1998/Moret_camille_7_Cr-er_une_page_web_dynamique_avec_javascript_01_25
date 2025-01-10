@@ -7,7 +7,7 @@ let btn = document.querySelector(".btn_class")
 let catego = fetch("http://localhost:5678/api/categories")
     .then(res => res.json())
     .then(data_catego => {
-        let display = '<button class="btn_class 0" data-id="0">Tous</button>'
+        let display = '<button class="btn_class 0 btn_select" data-id="0">Tous</button>'
         for (const figure of data_catego) {
 
             display += `<button class="btn_class ${figure.id}" data-id="${figure.id}">${figure.name}</button>`
@@ -124,7 +124,7 @@ addPicture.addEventListener("click", () => {
     modal.querySelector(".galerie-photo").style.display = 'none'
     modal.querySelector(".ajout-photo").style.display = 'block'
 })
-/* La on suprime les fiche presente dynamiquement */
+/* On suprime les fiches presente dynamiquement */
 btnSupr.forEach(button =>
     button.addEventListener("click", (e) => {
         let url = ("http://localhost:5678/api/works/" + e.target.id)
@@ -145,12 +145,14 @@ btnSupr.forEach(button =>
 
     })
 )
+/* Le bouttun pour revenir en arrière dans la modal */
 document.querySelectorAll(".data-return").forEach(button =>
     button.addEventListener("click", (e) => {
         modal.querySelector(".ajout-photo").style.display = 'none'
         modal.querySelector(".galerie-photo").style.display = 'block'
     })
 )
+/* Le button pour fermer la modal qui rafiche la première page de la modal */
 document.querySelectorAll(".data-close-modal").forEach(button =>
     button.addEventListener("click", (e) => {
         modal.querySelector(".galerie-photo").style.display = 'block'
@@ -158,14 +160,14 @@ document.querySelectorAll(".data-close-modal").forEach(button =>
         modal.close()
     })
 )
-
+/* Ceci est le selecteur de categorie dans la modal ou on ajoute des fiches. */
 let categoModal = fetch("http://localhost:5678/api/categories")
     .then(res => res.json())
     .then(data_catego => {
         let display = '<option class="opti" value="">--Selectioner une categorie--</option>'
         for (const figure of data_catego) {
 
-            display += `<option class="opti" id="ueue" value="${figure.id}">${figure.name}</option>`
+            display += `<option class="opti" value="${figure.id}">${figure.name}</option>`
 
         }
         document.querySelector(".modal-catego").insertAdjacentHTML('afterbegin', display)
@@ -178,7 +180,7 @@ let categoModal = fetch("http://localhost:5678/api/categories")
 
 const addModal = document.querySelector("form")
 const ue = document.querySelector(".modal-catego")
-document.getElementById("ui").addEventListener('change', function () {
+document.getElementById("modalCatego").addEventListener('change', function () {
 
 })
 
@@ -189,7 +191,7 @@ addModal.addEventListener("submit", async (e) => {
     e.preventDefault()
     const image = addModal.inputFile.files[0]
     const titleFigure = addModal.titre.value
-    const category = addModal.ui.value
+    const category = addModal.modalCatego.value
     const formData = new FormData()
     formData.append("image", image)
     formData.append("title", titleFigure)

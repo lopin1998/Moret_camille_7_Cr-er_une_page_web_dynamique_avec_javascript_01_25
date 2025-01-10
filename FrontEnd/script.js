@@ -256,19 +256,8 @@ inputFile.onchange = e => {
 
 /* Controle du form */
 document.addEventListener("DOMContentLoaded", () => {
-    const contactForm = document.getElementById("contactForm")
-    const contactFormSubmit = document.getElementById("contactFormSubmit")
-
     const pictureForm = document.getElementById("pictureForm")
     const formModalSubmit = document.getElementById("formModalSubmit")
-    const checkFormValidity = () => {
-        if (contactForm.checkValidity()) {
-            contactFormSubmit.disabled = false
-        }
-        else {
-            contactFormSubmit.disabled = true
-        }
-    }
     const checkPictureFormValidity = () => {
         if (pictureForm.checkValidity()) {
             formModalSubmit.disabled = false
@@ -277,8 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
             formModalSubmit.disabled = true
         }
     }
-    contactForm.addEventListener("input", checkFormValidity)
     pictureForm.addEventListener("input", checkPictureFormValidity)
-    checkFormValidity()
     checkPictureFormValidity()
 })

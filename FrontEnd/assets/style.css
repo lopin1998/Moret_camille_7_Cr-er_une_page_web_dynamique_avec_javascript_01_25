@@ -86,6 +86,7 @@ body.modal-open {
     text-align: center;
     border-radius: 60px;
 	padding: 7px;
+	cursor: pointer;
 
 }
 
@@ -129,7 +130,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -147,6 +147,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 li:hover {
@@ -222,7 +223,15 @@ li:hover {
 	text-align: center;
 	border-radius: 60px ;
 	border: 2px solid #246453;
+	cursor: pointer;
+
 }
+
+.btn_class:hover {
+	color: white;
+	background-color: #1D6154;
+}
+
 .btn_select {
 	color: white;
 	background-color: #1D6154;
@@ -327,6 +336,7 @@ footer nav ul {
     font-size: 17px;
     padding-right: 15px;
     padding-top: 10px;
+	cursor: pointer;
 }
 
 .h2Style i {
@@ -335,6 +345,7 @@ footer nav ul {
 	color: black;
     font-size: 13px;
     padding-left: 30px;
+	cursor: pointer;
 
 }
 
@@ -366,6 +377,7 @@ footer nav ul {
 	background-color: black;
 	border-radius: 3px;
 	padding: 5px;
+	cursor: pointer;
 }
 
 .fa-image {
@@ -382,7 +394,8 @@ footer nav ul {
 	top: 10px;
     font-size: 17px;
     padding-left: 15px;
-    padding-top: 10px;;
+    padding-top: 10px;
+	cursor: pointer;
 }
 
 .ajout-photo { 
@@ -450,4 +463,16 @@ footer nav ul {
 .formFile img {
 	position: absolute;
 	height: 169px;
+}
+.pictureForm hr {
+	display: block;
+	max-width: 420px;
+	margin: 30px 0px 0px 0px;
+ }
+
+.galerie-photo hr {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 520px;
 }

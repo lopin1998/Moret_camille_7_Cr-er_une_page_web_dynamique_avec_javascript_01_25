@@ -49,7 +49,7 @@ let catego = fetch("http://localhost:5678/api/categories")
 
     })
     .catch(err => {
-        
+
     })
 
 /* Toute les images afficher */
@@ -75,7 +75,7 @@ let works = fetch("http://localhost:5678/api/works")
 
     })
     .catch(err => {
-        
+
     })
 
 /* key login */
@@ -140,7 +140,7 @@ btnSupr.forEach(button =>
                 e.target.parentNode.remove()
             })
             .catch(e => {
-                
+
             })
 
     })
@@ -162,8 +162,9 @@ document.querySelectorAll(".data-close-modal").forEach(button =>
 )
 
 modal.addEventListener('click', (e) => {
-    if(e.target == modal) {
+    if (e.target == modal) {
         document.querySelector("body").style.overflow = 'auto'
+        modal.querySelector(".galerie-photo").style.display = 'block'
         modal.close()
     }
 })
@@ -183,7 +184,7 @@ let categoModal = fetch("http://localhost:5678/api/categories")
 
     })
     .catch(err => {
-        
+
     })
 
 const addModal = document.querySelector("form")
@@ -254,7 +255,7 @@ addModal.addEventListener("submit", async (e) => {
 /* La on peut voir la precview */
 inputFile.onchange = e => {
     const [file] = inputFile.files
-    if (file) {
+    if ((checkSizePicture() == true) && (checkTypePicture() == true)) {
         preview.src = URL.createObjectURL(file)
         document.querySelector(".fa-image").style.display = "none"
         document.querySelector(".addPhoto").style.display = "none"
@@ -262,7 +263,30 @@ inputFile.onchange = e => {
         document.querySelector(".labelFile").style.visibility = "visible"
     }
 
+    const pictureSize = file.size /* kilobite 4.000.000*/
+    const pictureType = file.type /* .jpg .png */
+    console.log(pictureSize, pictureType)
+    function checkSizePicture() {
+        if (file.size > 4000000) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    function checkTypePicture() {
+        if ((file.type == 'image/png') || (file.type == 'image/jpeg')) {
+            return true
+        }
+        else {
+            return false
+        }
+
+    }
 }
+
+
+
 
 /* Controle du form */
 document.addEventListener("DOMContentLoaded", () => {

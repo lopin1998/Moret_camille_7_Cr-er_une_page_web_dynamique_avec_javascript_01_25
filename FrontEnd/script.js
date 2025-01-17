@@ -135,9 +135,12 @@ btnSupr.forEach(button =>
 
         fetch(url, option)
             .then(response => {
-                let test = document.querySelector(`#work-${e.target.id}`)
+                let test = document.querySelector(`#work-modal-${e.target.id}`)
+                console.log(test)
                 test.remove()
-                e.target.parentNode.remove()
+                console.log(e.target.id)
+                let figureHomePage = document.querySelector(`#work-${e.target.id}`)
+                figureHomePage.remove()
             })
             .catch(e => {
 
@@ -225,7 +228,7 @@ addModal.addEventListener("submit", async (e) => {
                         <img src="${figure_works.imageUrl}" alt="${titleFigure}">
                         <figcaption>${titleFigure}</figcaption>
                     </figure>`
-                    display4 = `<figure id="work-${figure_works.id}" data-catego="${category}">
+                    display4 = `<figure id="work-modal-${figure_works.id}" data-catego="${category}">
                         <img src="${figure_works.imageUrl}" alt="${titleFigure}">
                         <figcaption>${titleFigure}</figcaption>
                         <i class="fa-regular fa-trash-can supr-btn" id="${figure_works.id}"></i>
